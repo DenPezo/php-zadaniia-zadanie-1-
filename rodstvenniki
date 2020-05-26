@@ -1,0 +1,49 @@
+<? 
+class Person{
+  public $name;
+  public $lastname;
+  public $age;
+  public $mother;
+  public $father;
+  function __construct($n,$l,$a,$m=null,$f=null){
+    $this->name = $n;
+    $this->lastname = $l;
+    $this->age = $a;
+    $this->mother = $m;
+    $this->father = $f;
+  }
+  public function sayHi(){
+    echo "Hi, my name is ".$this->name;
+  }
+  public function tellAboutYourParents(){
+    $str = '';
+    if ($this->mother == null and $this->father == null) $str = "Mother is null<br>Father is null<br>";
+    else if ($this->mother == null) $str = "Mother  is null<br>My father: ".$this->father->name."<br>";
+    else if ($this->father == null) $str = "Father is null<br>My mother: ".$this->mother->name."<br>";
+    else
+      $str = "My name: ".$this->name."<br>
+              My mother: ".$this->mother->name."<br>
+              My father: ".$this->father->name."<br>
+              My grandfather papa: ".$this->father->father->name."<br>
+              My grandmather papa: ".$this->father->mother->name."<br>
+              My grandfather mama: ".$this->mother->father->name."<br>
+              My grandmather mama: ".$this->mother->mother->name."<br>";
+              
+              
+              
+              
+    return $str;
+  }
+}
+
+$pafnutii = new Person("Pafnutii","Ivanov",80);
+$erema = new Person("Erema","Panov",76);
+$fekla = new Person("Fekla","Ivanova",77);
+$klava = new Person("Klava","Panova",90);
+$alex = new Person("Alex","Ivanov",36,$fekla,$pafnutii);
+$jula = new Person("Jula","Ivanova",34,$klava,$erema);
+$olga = new Person("Olga","Ivanova",7,$jula,$alex);
+$igor = new Person("Igor","Ivanov",3,$jula,$alex);
+$mitia = new Person("Mitia","Ivanov",1,$jula,$alex);
+echo $igor->tellAboutYourParents();
+?>
